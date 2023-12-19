@@ -38,11 +38,10 @@ async function crawlLink(pathname) {
 
   if (crawledLinks.has(pathname)) {
     return;
-  } else {
-    crawledLinks.add(pathname);
   }
+  crawledLinks.add(pathname);
 
-  // Crawl with and without a trailing slash to avoid hydration issues
+  // Crawl with a trailing slash to avoid hydration issues
   if (!pathname.endsWith("/")) {
     pathname = pathname + "/";
   }
@@ -55,7 +54,7 @@ async function crawlLink(pathname) {
   let outputPath = path.join(args.dir, pathname, "index.html");
   await fse.outputFile(outputPath, html);
 
-  // Recurse through any outgoing links
+  // Queue outgoing links
   let root = parse(html);
   for (let a of root.querySelectorAll("a")) {
     let href = a.getAttribute("href");

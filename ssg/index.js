@@ -4,9 +4,9 @@ import path from "node:path";
 import { createRequestHandler } from "@remix-run/server-runtime";
 import fse from "fs-extra";
 import { parse } from "node-html-parser";
+import invariant from "tiny-invariant";
 
 import * as build from "../build/index.js";
-import invariant from "tiny-invariant";
 
 const { values: args } = parseArgs({
   options: {

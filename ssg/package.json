@@ -1,0 +1,19 @@
+{
+  "name": "ssg",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remix-run/server-runtime": "^2.4.0",
+    "fs-extra": "^11.2.0",
+    "node-html-parser": "^6.1.11",
+    "tiny-invariant": "^1.3.1"
+  }
+}

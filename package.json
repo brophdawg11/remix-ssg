@@ -7,15 +7,11 @@
     "build": "remix build",
     "dev": "remix dev --manual",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/css-bundle": "^2.4.0",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
-    "@remix-run/serve": "^2.4.0",
-    "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,38 +1,44 @@
-# Welcome to Remix!
+# Remix SSG
 
-- [Remix Docs](https://remix.run/docs)
+You are probably better off running your app with a live Remix server. But people ask for SSG all the time so this is an exercise in how you could do that today in Remix. It's slightly more capable now that Remix supports [Client Data](https://remix.run/docs/en/main/guides/client-data).
 
-## Development
+This is a Remix app with a simple script that will SSG the Remix app by spidering the site starting at the `/` path.
 
-From your terminal:
+## Usage
+
+First, clone this repo and install dependencies for the Remix app and for the SSG spidering script:
 
 ```sh
-npm run dev
+git clone git@github.com:brophdawg11/remix-ssg.git
+cd remix-ssg
+npm ci
+cd ssg
+npm ci
+cd ..
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
+Then, build your Remix app:
 
 ```sh
 npm run build
 ```
 
-Then run the app in production mode:
+And spider the app, writing the statically generated HTML files to the `public/` directory alongside your build assets:
 
 ```sh
-npm start
+node ssg/index.js --dir public
 ```
 
-Now you'll need to pick a host to deploy it to.
+Then, you should hae a fully SSG'd site you can serve from `public/`:
 
-### DIY
+```sh
+npx http-server --port 3000 public/
+```
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+## Notes
 
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+- For the most part, you want to stick with `clientLoader`/`clientAction` for your data
+  - You _can_ use a server `loader` to generate the static HTML if you'd like, but it will not be available at runtime and you should never call `serverLoader`/`serverAction` because there is no endpoint to hit
+  - See `routes/prerender-server-data.tsx` and `routes/prerender-server-data-and-hydrate.tsx` for examples
+- You can use `HydrateFallback` components to partially pre-render the page down to a certain point in the route hierarchy
+  - See `routes/client-loader-only.tsx` for an example

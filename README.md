@@ -4,6 +4,8 @@ You are probably better off running your app with a live Remix server. But peopl
 
 This is a Remix app with a simple script that will SSG the Remix app by spidering the site starting at the `/` path.
 
+This is basically a node version of the approach [outlined by @mjackson on Twitter](https://twitter.com/mjackson/status/1585795441907494912).
+
 ## Usage
 
 First, clone this repo and install dependencies for the Remix app and for the SSG spidering script:

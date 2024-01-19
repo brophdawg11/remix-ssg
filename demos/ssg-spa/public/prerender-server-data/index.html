@@ -1,0 +1,23 @@
+<html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/></head><body><nav><ul><li><a href="/">/</a></li><li><a href="/prerender-server-data">/prerender-server-data</a></li><li><a href="/prerender-server-data-and-hydrate">/prerender-server-data-and-hydrate</a></li><li><a href="/client-loader-only">/client-loader-only</a></li></ul></nav><div><h1>Prerender Server Data</h1><p>This page has both a loader and a clientLoader. The server loader is used to SSG/pre-render the page, and then clientLoader is called on any SPA navigations to this route</p><p>Loader data: <!-- -->This data came from the server loader</p></div><script>((STORAGE_KEY, restoreKey) => {
+    if (!window.history.state || !window.history.state.key) {
+      let key = Math.random().toString(32).slice(2);
+      window.history.replaceState({
+        key
+      }, "");
+    }
+    try {
+      let positions = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+      let storedY = positions[restoreKey || window.history.state.key];
+      if (typeof storedY === "number") {
+        window.scrollTo(0, storedY);
+      }
+    } catch (error) {
+      console.error(error);
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  })("positions", null)</script><link rel="modulepreload" href="/build/manifest-093ECEBF.js"/><link rel="modulepreload" href="/build/entry.client-74GG642N.js"/><link rel="modulepreload" href="/build/_shared/chunk-GSTWUOFT.js"/><link rel="modulepreload" href="/build/_shared/chunk-OJMGAPM4.js"/><link rel="modulepreload" href="/build/root-7E5A547K.js"/><link rel="modulepreload" href="/build/routes/prerender-server-data-BWOJ4ER2.js"/><script>window.__remixContext = {"url":"/prerender-server-data/","state":{"loaderData":{"routes/prerender-server-data":{"message":"This data came from the server loader"},"root":null},"actionData":null,"errors":null},"future":{"v3_fetcherPersist":false,"v3_relativeSplatPath":false}};</script><script type="module" async="">import "/build/manifest-093ECEBF.js";
+import * as route0 from "/build/root-7E5A547K.js";
+import * as route1 from "/build/routes/prerender-server-data-BWOJ4ER2.js";
+window.__remixRouteModules = {"root":route0,"routes/prerender-server-data":route1};
+
+import("/build/entry.client-74GG642N.js");</script></body></html>

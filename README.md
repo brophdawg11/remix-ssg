@@ -1,46 +1,24 @@
-# Remix SSG
+# Remix SSG SPA
 
 You are probably better off running your app with a live Remix server. But people ask for SSG all the time so this is an exercise in how you could do that today in Remix. It's slightly more capable now that Remix supports [Client Data](https://remix.run/docs/en/main/guides/client-data).
 
-This is a Remix app with a simple script that will SSG the Remix app by spidering the site starting at the `/` path.
-
-This is basically a node version of the approach [outlined by @mjackson on Twitter](https://twitter.com/mjackson/status/1585795441907494912).
+These examples are basically node versions of the approach [outlined by @mjackson on Twitter](https://twitter.com/mjackson/status/1585795441907494912).
 
 ## Usage
 
-First, clone this repo and install dependencies for the Remix app and for the SSG spidering script:
+First, clone this repo and install dependencies for the Remix demo apps and for the SSG spidering script:
 
 ```sh
 git clone git@github.com:brophdawg11/remix-ssg.git
 cd remix-ssg
 npm ci
-cd ssg
+cd spider
 npm ci
 cd ..
 ```
 
-Then, build your Remix app:
+Then, each app in `demos/` is a standalone Remix app that you can run and investigate to see the different patterns you can achieve with Remix and Client Data.
 
-```sh
-npm run build
-```
-
-And spider the app, writing the statically generated HTML files to the `public/` directory alongside your build assets:
-
-```sh
-node ssg/index.js --dir public
-```
-
-Then, you should hae a fully SSG'd site you can serve from `public/`:
-
-```sh
-npx http-server --port 3000 public/
-```
-
-## Notes
-
-- For the most part, you want to stick with `clientLoader`/`clientAction` for your data
-  - You _can_ use a server `loader` to generate the static HTML if you'd like, but it will not be available at runtime and you should never call `serverLoader`/`serverAction` because there is no endpoint to hit
-  - See `routes/prerender-server-data.tsx` and `routes/prerender-server-data-and-hydrate.tsx` for examples
-- You can use `HydrateFallback` components to partially pre-render the page down to a certain point in the route hierarchy
-  - See `routes/client-loader-only.tsx` for an example
+- [`demos/ssg-mpa`](./demos/ssg-mpa/) - This is an SSG'd application that only uses server loaders so we can SSG entire HTML documents into a multi-page app that can be statically deployed
+- [`demos/ssg-spa`](./demos/ssg-spa/) - This is an SSG'd application that uses server loaders so we can SSG entire HTML documents, but also hydrates into a SPA via the usage of `clientLoader`s that do no call the server loaders so it can be statically deployed.
+- [`demos/ssr-ssg-hybrod`](./demos/ssr-ssg-hybrid/) - This is hybrid SSR/SSG application that where some rtoutes are pre-rendered to HTML and then served statically from the express server on document requests. Other routes are served using normal SSR.

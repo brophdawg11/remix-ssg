@@ -1,14 +1,12 @@
 {
-  "name": "ssg",
+  "name": "spider",
   "version": "0.1.0",
-  "description": "",
+  "description": "Spidering tool to crawl your Remix app and write out HTML files",
   "main": "index.js",
   "sideEffects": false,
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "scripts": {},
+  "author": "matt@brophy.org",
   "license": "ISC",
   "dependencies": {
     "@remix-run/server-runtime": "^2.4.0",

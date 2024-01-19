@@ -1,4 +1,5 @@
-import { parseArgs } from "node:util";
+import util from "node:util";
+import process from "node:process";
 import path from "node:path";
 
 import { createRequestHandler } from "@remix-run/server-runtime";
@@ -6,25 +7,38 @@ import fse from "fs-extra";
 import { parse } from "node-html-parser";
 import invariant from "tiny-invariant";
 
-import * as build from "../build/index.js";
-
-const { values: args } = parseArgs({
+const { values: args } = util.parseArgs({
   options: {
+    build: {
+      type: "string",
+      short: "b",
+      required: true,
+    },
     dir: {
       type: "string",
       short: "d",
       required: true,
     },
+    routes: {
+      type: "string",
+      short: "r",
+    },
   },
 });
+invariant(args.build, "Please specify a build path with --build");
 invariant(args.dir, "Please specify an output directory with --dir");
 
-let handler = createRequestHandler(build, "production");
-
-let queuedLinks = ["/"];
+let handler;
+let queuedLinks = args.routes ? args.routes.split(",") : ["/"];
 let crawledLinks = new Set();
 
-processQueue();
+run();
+
+async function run() {
+  const build = await import(args.build);
+  handler = createRequestHandler(build, "production");
+  processQueue();
+}
 
 async function processQueue() {
   while (queuedLinks.length > 0) {
@@ -61,7 +75,11 @@ async function crawlLink(pathname) {
     if (!href.startsWith("/")) {
       continue;
     }
-    if (!crawledLinks.has(href) && !queuedLinks.includes(href)) {
+    if (
+      !crawledLinks.has(href) &&
+      !queuedLinks.includes(href) &&
+      args.routes == null
+    ) {
       queuedLinks.push(href);
     }
   }

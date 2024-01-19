@@ -1,0 +1,42 @@
+{
+  "name": "ssg-mpa",
+  "description": "Sample app that generates an SSG multi-page app without hydration",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "author": "matt@brophy.org",
+  "license": "ISC",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev --manual",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "typecheck": "tsc",
+    "spider": "node ../../spider --build ../demos/ssg-mpa/build/index.js --dir public",
+    "ssg": "npm run build && npm run spider",
+    "serve": "http-server public"
+  },
+  "dependencies": {
+    "@remix-run/node": "^2.5.1",
+    "@remix-run/react": "^2.5.1",
+    "http-server": "^14.1.1",
+    "isbot": "^4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.5.1",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

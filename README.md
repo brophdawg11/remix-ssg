@@ -21,4 +21,4 @@ Then, each app in `demos/` is a standalone Remix app that you can run and invest
 
 - [`demos/ssg-mpa`](./demos/ssg-mpa/) - This is an SSG'd application that only uses server loaders so we can SSG entire HTML documents into a multi-page app that can be statically deployed
 - [`demos/ssg-spa`](./demos/ssg-spa/) - This is an SSG'd application that uses server loaders so we can SSG entire HTML documents, but also hydrates into a SPA via the usage of `clientLoader`s that do no call the server loaders so it can be statically deployed.
-- [`demos/ssr-ssg-hybrod`](./demos/ssr-ssg-hybrid/) - This is hybrid SSR/SSG application that where some rtoutes are pre-rendered to HTML and then served statically from the express server on document requests. Other routes are served using normal SSR.
+- [`demos/ssr-ssg-hybrid`](./demos/ssr-ssg-hybrid/) - This is hybrid SSR/SSG application that where some rtoutes are pre-rendered to HTML and then served statically from the express server on document requests. Other routes are served using normal SSR.

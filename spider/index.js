@@ -23,6 +23,10 @@ const { values: args } = util.parseArgs({
       type: "string",
       short: "r",
     },
+    singleFetch: {
+      type: "boolean",
+      short: "s",
+    },
   },
 });
 invariant(args.build, "Please specify a build path with --build");
@@ -67,6 +71,17 @@ async function crawlLink(pathname) {
   let html = await response.text();
   let outputPath = path.join(args.dir, pathname, "index.html");
   await fse.outputFile(outputPath, html);
+
+  if (args.singleFetch) {
+    let dataPath =
+      pathname === "/" ? "/_root.data" : `${pathname.replace(/\/$/, "")}.data`;
+    let dataRequest = new Request(`http://localhost${dataPath}`);
+    console.log(`Rendering data path: ${dataPath}`);
+    let dataResponse = await handler(dataRequest);
+    let data = await dataResponse.text();
+    let dataOutputPath = path.join(args.dir, dataPath);
+    await fse.outputFile(dataOutputPath, data);
+  }
 
   // Queue outgoing links
   let root = parse(html);

@@ -4,7 +4,8 @@ This is a Remix app with a simple script that will SSG the Remix app by spiderin
 
 The routes in this app use server loaders so you can pre-render entire HTML documents complete with data (yay SEO!). **But!** Since we're using Remix Single Fetch we can _also_ prerender all of the data from each server loader into `.data` files. This allows the site to then hydrate ito a SPA because the routes can call their "server loaders" and just receive back the pre-rendered `.data` files from a CDN. This way, it can be deployed statically without ever trying to hit the Remix server on client-side navigations.
 
-> [!INFORMATION] This currently requires the Remix `2.9.0` prerelease (`2.9.0-pre.1`) and the `future.unstable_singleFetch` flag
+> [!NOTE]
+> This currently requires the Remix `2.9.0` prerelease (`2.9.0-pre.1`) and the `future.unstable_singleFetch` flag
 
 ## Usage
 

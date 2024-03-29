@@ -37,4 +37,4 @@ npm run serve
 
 ## Notes
 
-Your SSG'd data files are essentially a cache that you have full control over. If you want to update the data, just push a new `.data` file.
+Your SSG'd data files are essentially a cache that you have full control over. If you want to update the data, just crawl a new HTML and `.data` file.

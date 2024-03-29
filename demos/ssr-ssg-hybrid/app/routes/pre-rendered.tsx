@@ -20,10 +20,10 @@ export default function Index() {
       <p>
         If you client-side route to this page, it will still call the server
         loader so you probably want to leverage a server-side cache for the data
-        there (or strong Cache-Control headers and an edge CDN). Once the
-        single-fetch proposal lands, you'll be able to pre-render the data for
-        routes like this into .json files so that even on SPA navigations the
-        server loader isn't called.
+        there (or strong Cache-Control headers and an edge CDN). Once the single
+        fetch proposal lands, you'll be able to pre-render the data for routes
+        like this into .json files so that even on SPA navigations the server
+        loader isn't called.
       </p>
 
       <p>Loader data: {data.message}</p>

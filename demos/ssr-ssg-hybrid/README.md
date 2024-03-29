@@ -6,7 +6,7 @@ Then, in our express server, for document requests we first look for a pre-rende
 
 In both cases, the application hydrates into a SPA for client-side navigations.
 
-It should be noted that if you client-side route to a pre-rendered page, it will still call the server loader so you probably want to leverage a server-side cache for the data there (or strong Cache-Control headers and an edge CDN). Once the single-fetch proposal lands, you'll be able to pre-render the data for routes like this into .json files so that even on SPA navigations the server loader isn't called.
+It should be noted that if you client-side route to a pre-rendered page, it will still call the server loader so you probably want to leverage a server-side cache for the data there (or strong Cache-Control headers and an edge CDN). Once the single fetch proposal lands, you'll be able to pre-render the data for routes like this into .json files so that even on SPA navigations the server loader isn't called.
 
 ## Usage
 

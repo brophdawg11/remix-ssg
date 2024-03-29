@@ -22,7 +22,7 @@ And spider the built app, writing the statically generated HTML files to the `pu
 
 ```sh
 npm run spider
-# node ../../spider --build ../demos/ssg-spa/build/index.js --dir public
+# node ../../spider --build ../demos/ssg-spa-client-loaders/build/index.js --dir public
 ```
 
 Then, you should hae a fully SSG'd site you can serve from `public/`:

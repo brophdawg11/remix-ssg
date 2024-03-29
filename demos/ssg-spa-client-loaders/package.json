@@ -1,5 +1,5 @@
 {
-  "name": "ssg-spa",
+  "name": "ssg-spa-client-loaders",
   "description": "Sample app that generates an SSG app hydrating into a SPA using clientLoaders",
   "private": true,
   "sideEffects": false,
@@ -11,7 +11,7 @@
     "dev": "remix dev --manual",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "typecheck": "tsc",
-    "spider": "node ../../spider --build ../demos/ssg-spa/build/index.js --dir public",
+    "spider": "node ../../spider --build ../demos/ssg-spa-client-loaders/build/index.js --dir public",
     "ssg": "npm run build && npm run spider",
     "serve": "http-server public"
   },
